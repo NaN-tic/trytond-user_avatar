@@ -41,7 +41,7 @@ class User:
         })
 
     def get_avatar(self, name):
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
         filename = self.avatar_filename
         if not filename:
             return None
@@ -66,7 +66,7 @@ class User:
                 })
             return
     
-        db_name = Transaction().cursor.dbname
+        db_name = Transaction().database.name
         user_dir = os.path.join(
             config.get('database', 'path'), db_name, 'user', 'avatar')
 
