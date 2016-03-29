@@ -11,13 +11,13 @@ import os
 import hashlib
 
 __all__ = ['User']
-__metaclass__ = PoolMeta
 
 AVATAR_SIZE = 150
 IMAGE_TYPES = ['image/jpeg', 'image/png',  'image/gif']
 
 
 class User:
+    __metaclass__ = PoolMeta
     __name__ = 'res.user'
     avatar = fields.Function(fields.Binary('Avatar', filename='avatar_filename',
         help='Avatar User Image'), 'get_avatar', setter='set_avatar')
