@@ -1,5 +1,5 @@
 #This file is part user_avatar module for Tryton.
-#The COPYRIGHT file at the top level of this repository contains 
+#The COPYRIGHT file at the top level of this repository contains
 #the full copyright notices and license terms.
 from trytond.model import fields
 from trytond.pool import PoolMeta
@@ -16,8 +16,7 @@ AVATAR_SIZE = 150
 IMAGE_TYPES = ['image/jpeg', 'image/png',  'image/gif']
 
 
-class User:
-    __metaclass__ = PoolMeta
+class User(metaclass=PoolMeta):
     __name__ = 'res.user'
     avatar = fields.Function(fields.Binary('Avatar', filename='avatar_filename',
         help='Avatar User Image'), 'get_avatar', setter='set_avatar')
@@ -65,7 +64,7 @@ class User:
                 'avatar_filename': None,
                 })
             return
-    
+
         db_name = Transaction().database.name
         user_dir = os.path.join(
             config.get('database', 'path'), db_name, 'user', 'avatar')
@@ -97,8 +96,8 @@ class User:
             filename = os.path.join(directory, digest)
 
             if not os.path.isdir(directory):
-                os.makedirs(directory, 0775)
-            os.umask(0022)
+                os.makedirs(directory, 0o775)
+            os.umask(0o022)
             with open(filename, 'wb') as file_p:
                 file_p.write(value)
 
