@@ -76,7 +76,7 @@ class User(metaclass=PoolMeta):
             return
 
         for user in users:
-            file_name = user['avatar_filename']
+            file_name = user.avatar_filename
 
             file_mime, _ = guess_type(file_name)
             if not file_mime:
